@@ -16,12 +16,13 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/db', async (req, res) => getQuery('SELECT * FROM test_table')).then(
-    function (results) {
-      res.render('pages/db', results);
-    }
+    function (results) { renderDB(results); }
   )
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
+function renderDB(results) {
+  res.render('pages/db', results);
+}
 async function getQuery(query) {
   try {
     const client = await pool.connect();
