@@ -17,7 +17,10 @@ express()
   .get('/', (req, res) => res.render('pages/index'))
   .get('/db', (req, res) => {
     const results = getQuery('SELECT * FROM test');
-    res.render('pages/db', results);
+    console.log(results);
+    if (results !== null) {
+      res.render('pages/db', results);
+    }
   }
   )
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
