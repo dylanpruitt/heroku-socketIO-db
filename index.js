@@ -15,16 +15,18 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/db', async (req, res) => getQuery('SELECT * FROM test_table'))
+  .get('/db', async (req, res) => getQuery('SELECT * FROM test_table')).then((results) => {
+    res.render('pages/db', results);
+  })
   .listen(PORT, () => console.log(`Listening on ${PORT}`))
 
-function getQuery(query) {
+async function getQuery(query) {
   try {
     const client = await pool.connect();
     const result = await client.query(query);
     const results = { 'results': (result) ? result.rows : null };
-    res.render('pages/db', results);
     client.release();
+    return results;
   } catch (err) {
     console.error(err);
     res.send("Error " + err);
