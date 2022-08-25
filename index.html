@@ -26,6 +26,7 @@
             window.scrollTo(0, document.body.scrollHeight);
         });
         socket.on('recipe query', function (msg) {
+            console.log("received");
             console.log(msg);
         });
     </script>
