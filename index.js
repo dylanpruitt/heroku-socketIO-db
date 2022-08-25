@@ -33,9 +33,6 @@ app.get('/', (req, res) => {
   .get('/db', async (req, res) => {
     const results = await getQuery('SELECT * FROM test');
     console.log(results);
-    if (results !== null) {
-      res.render('pages/db', results);
-    }
   }
   );
 
