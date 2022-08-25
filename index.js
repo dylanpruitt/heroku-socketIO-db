@@ -14,7 +14,7 @@ const pool = new Pool({
   }
 });
 
-io.on('connection', (socket) => {
+io.on('connection', async (socket) => {
   const queryResults = await getQuery('SELECT * FROM test');
   io.to(socket.id).emit('recipe query', queryResults);
   console.log('a user connected');
