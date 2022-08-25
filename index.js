@@ -15,7 +15,8 @@ const pool = new Pool({
 });
 
 io.on('connection', (socket) => {
-  io.to(socket.id).emit('recipe query', await getQuery('SELECT * FROM test'));
+  const queryResults = await getQuery('SELECT * FROM test');
+  io.to(socket.id).emit('recipe query', queryResults);
   console.log('a user connected');
   socket.broadcast.emit('chat message', 'User joined.');
   socket.on('chat message', (msg) => {
