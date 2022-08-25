@@ -15,7 +15,7 @@ express()
   .set('views', path.join(__dirname, 'views'))
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
-  .get('/db', (req, res) => {
+  .get('/db', async (req, res) => {
     const results = getQuery('SELECT * FROM test');
     console.log(results);
     if (results !== null) {
