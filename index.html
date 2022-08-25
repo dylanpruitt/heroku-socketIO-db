@@ -25,5 +25,8 @@
             document.body.appendChild(item);
             window.scrollTo(0, document.body.scrollHeight);
         });
+        socket.on('recipe query', function (msg) {
+            console.log(msg);
+        });
     </script>
 </body>
