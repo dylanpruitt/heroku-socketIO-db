@@ -16,7 +16,7 @@ express()
   .set('view engine', 'ejs')
   .get('/', (req, res) => res.render('pages/index'))
   .get('/db', async (req, res) => {
-    const results = getQuery('SELECT * FROM test');
+    const results = await getQuery('SELECT * FROM test');
     console.log(results);
     if (results !== null) {
       res.render('pages/db', results);
