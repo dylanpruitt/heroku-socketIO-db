@@ -18,7 +18,7 @@ io.on('connection', async (socket) => {
   const queryResults = await getQuery('SELECT * FROM test');
   io.to(socket.id).emit('recipe query', queryResults);
   console.log('a user connected');
-  socket.broadcast.emit('chat message', 'User joined.');
+  socket.broadcast.emit('recipe query', queryResults);
   socket.on('chat message', (msg) => {
     io.emit('chat message', msg);
   });
