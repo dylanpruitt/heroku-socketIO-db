@@ -27,8 +27,7 @@ io.on('connection', (socket) => {
   });
 });
 
-app.use(express.static(path.join(__dirname, 'public')))
-  .get('/', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(__dirname + '/index.html');
   })
   .get('/db', async (req, res) => {
